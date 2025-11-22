@@ -1,0 +1,31 @@
+# 🧠 Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+
+# Environments
+venv/
+.env
+*.env
+.venv/
+
+# Streamlit
+.streamlit/
+
+# OS/system files
+.DS_Store
+Thumbs.db
+
+# Logs and temp files
+logs/
+*.log
+
+# IDE settings
+.vscode/
+.idea/
+*.swp
+
+# Node/npm (if used in future)
+node_modules/
