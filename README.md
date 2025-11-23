@@ -1,139 +1,85 @@
-<h1 align="center">🤖 VoxInterview – AI Interview Practice Partner</h1>
+📌 README.md — VoxInterview 🚀
 
-<p align="center">
-A Conversational AI Agent that conducts real-time adaptive mock interviews with dynamic scoring and voice interaction.
-<br>
-Built for the <b>Eightfold.ai Agentic AI Assignment</b>
-</p>
+AI-Powered Smart Interview Practice Assistant
 
----
+VoxInterview is an interactive AI interviewer built using Streamlit + Gemini Flash API, designed to help users practice job interviews through a conversational chat experience. It dynamically generates follow-up questions based on the user’s answers and evaluates responses with a detailed scoring rubric.
 
-## 📌 About The Project
+🎯 Key Features
+Feature	Description
+🔁 Fully Conversational Interview Flow	AI asks questions, evaluates your answer, then asks the next one automatically
+🧠 Adaptive Questioning	Follows-up based on your previous response & selected job role
+🎤 Voice Input	Answer using speech-to-text (Web Speech API in browser)
+🔊 AI Voice for Questions	Browser reads questions aloud using speech synthesis
+📊 Performance Summary	Scoring breakdown, strengths, weaknesses, recommended topics
+⚡ Real-Time Response Scoring	Dynamic scoring powered by Gemini-2.0 Flash
+💾 State Management	Maintains chat history & feedback in session
+🛠️ Tech Stack
+Component	Technology
+Frontend UI	Streamlit
+AI LLM	Google Gemini 2.0 Flash
+Voice Recognition	Browser SpeechRecognition API
+Styling	Custom CSS (Glassmorphism UI)
+State & Evaluation Logic	Python
+📂 Project Structure
+📁 voxinterview/
+├── app.py  # Main Streamlit App
+├── core/
+│   ├── state.py
+├── agents/
+│   ├── interview_agent.py  # Dynamic Q Generation
+│   ├── feedback_agent.py   # AI Scoring & Summary
+├── services/
+│   ├── llm_client.py       # Gemini API communication
+│   ├── text_to_speech.py   # Browser Speech Recognition support
+├── ui/
+│   ├── layout.py           # Sidebar + CSS injection
+├── .env                    # API key stored securely
+├── .gitignore              # Ensures key not pushed to GitHub
+└── README.md
 
-VoxInterview is an **AI-powered Interview Practice Partner** that simulates real interview environments through natural conversational flow.
+🔐 API Key Setup
 
-The agent:
-- Asks questions based on **role**, **persona**, and **your previous answers**
-- Evaluates responses with **intelligent scoring**
-- Provides **personalized improvement feedback**
-- Generates complete **performance summary**
-- Supports **voice answering** & **AI voice output**
-- Handles multiple **user personas** and behaviors
+1️⃣ Create .env file in project root:
 
-This ensures a **human-like interview experience** with continuous adaptation.
-
----
-
-## ✨ Key Features
-
-| Feature | Benefit |
-|--------|---------|
-| Adaptive questioning | AI asks follow-ups based on previous answer + skills |
-| Role-based difficulty progression | Evaluates relevant competencies |
-| Persona-driven interviewer styles | Friendly, Strict, Analytical, etc. |
-| Voice Input 🎙 | Speak answers (browser speech recognition) |
-| AI Voice Output 🔊 | Questions spoken using Web Speech API |
-| Dynamic Scoring | Evaluation across clarity, technical depth, structure |
-| Personalized Feedback | Clear improvement suggestions every turn |
-| Interview Summary | Strengths + Weaknesses + Suggested learning plan |
-
----
-
-## 🔍 Architecture Overview
-
-voxinterview/
-│
-├─ app.py # Streamlit app and UI logic
-│
-├─ agents/
-│ ├─ interview_agent.py # Agentic next-question generation
-│ └─ feedback_agent.py # AI-based scoring & summary
-│
-├─ services/
-│ ├─ llm_client.py # Gemini LLM API logic
-│ ├─ speech_to_text.py # (Optional) Local STT helper
-│ └─ text_to_speech.py # Browser-based TTS integration
-│
-├─ core/
-│ └─ state.py # Session state manager
-│
-├─ ui/
-│ └─ layout.py # Styling, sidebar and glass UI
-│
-├─ .env.example # Environment variables template
-├─ requirements.txt # Python dependencies
-└─ README.md # Project documentation
+GEMINI_API_KEY=your_api_key_here
 
 
----
+2️⃣ .env is already included in .gitignore
+✔ This ensures your API key is NOT uploaded to GitHub.
 
-## 🎮 Demo Workflow
+The demo repository will mention that “API key can be found locally in .env (ignored in GitHub for security).”
 
-| User Style | System Behavior |
-|-----------|----------------|
-| Confused User | Guiding follow-up questions |
-| Efficient User | Short, targeted conversation |
-| Off-topic User | Penalizes relevance score |
-| Chatty User | Keeps flow structured |
-
-🎥 **Demo video will be attached on final submission**
-
----
-
-## 🎯 Assignment Requirements Mapping
-
-| Requirement | How it’s fulfilled |
-|------------|------------------|
-| Conversational quality | Memory-aware chat with natural flow |
-| Agentic behavior | Fully autonomous question generation |
-| Technical decisioning | Modular AI-driven pipeline |
-| Intelligence | LLM scoring + dynamic feedback |
-| Adaptability | Personas + interview style variations |
-| Multiple user personas handled | YES (all 4 tested) |
-
----
-
-## 🔐 API Keys Setup
-
-Create a `.env` file (based on included `.env.example`):
-
-```bash
-GEMINI_API_KEY=YOUR_KEY_HERE
-
-
-⚠ Do NOT commit your .env file
-(Already protected in .gitignore)
-
-⚙️ Installation & Run
-# 1️⃣ Clone repo
-git clone https://github.com/<your-username>/voxinterview.git
-cd voxinterview
-
-# 2️⃣ Create environment
-python -m venv venv
-venv/Scripts/activate    # Windows
-# OR
-source venv/bin/activate # Mac/Linux
-
-# 3️⃣ Install dependencies
+▶️ How to Run
+1️⃣ Install Dependencies
 pip install -r requirements.txt
 
-# 4️⃣ Run App 🚀
+2️⃣ Start Application
 streamlit run app.py
 
 
-App opens automatically at:
-👉 http://localhost:8501/
+✔ App opens at → http://localhost:8501
 
-🧠 AI Evaluation Metrics
+🧪 Roles Supported
 
-Each answer evaluated on:
+✔ Software Engineer
+✔ Data Analyst
+✔ Sales Roles
+✔ Generic Behavioral Interviews
 
-Metric	Weight
-Communication	✔
-Technical Depth	✔
-Relevance	✔
-Structure / STAR Framework	✔
-Persona-based behavior	✔
+Easily customizable inside agents/interview_agent.py
 
-Follow-up questions target improving weak areas.
+📌 Future Enhancements
+
+Resume upload for personalized questions
+
+Video interview analysis (eye contact & tone)
+
+Login + Candidate history tracking
+
+Export full report as PDF
+
+Author
+
+Shreyansh Palwalia
+B.Tech — Delhi Technological University
+📧 shreyanshpalwalia_se22a12_72@dtu.ac.in
