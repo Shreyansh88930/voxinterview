@@ -8,7 +8,9 @@ body {
 
 /* Make Streamlit container glassy */
 .block-container {
-    padding-top: 1.5rem;
+    padding-top: 2.4rem;
+    padding-left: 1rem;
+    padding-right: 1rem;
 }
 
 .glass-card {
@@ -18,6 +20,7 @@ body {
     box-shadow: 0 0 30px rgba(0, 0, 0, 0.6);
     padding: 1.2rem 1.5rem;
     backdrop-filter: blur(18px);
+    margin-bottom: 1rem;
 }
 
 /* Neon pill buttons */
@@ -46,4 +49,24 @@ button[kind="secondary"] {
     border-radius: 999px;
     font-size: 0.8rem;
     border: 1px solid rgba(180, 180, 255, 0.4);
+}
+
+/* Subtle horizontal rule for Streamlit markdown '---' */
+hr {
+    border: none;
+    height: 1px;
+    background: linear-gradient(90deg, rgba(255,255,255,0.03), rgba(180,180,255,0.08), rgba(255,255,255,0.03));
+    margin: 0.6rem 0;
+}
+
+/* Add spacing between Streamlit columns to avoid overlap */
+.stColumns > div,
+.stMultiColumnLayout > div {
+    padding-left: 0.6rem;
+    padding-right: 0.6rem;
+}
+
+/* Ensure header card doesn't overlap with top widgets */
+.glass-card:first-of-type {
+    margin-top: 0.6rem;
 }

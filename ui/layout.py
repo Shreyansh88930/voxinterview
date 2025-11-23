@@ -5,8 +5,16 @@ from core.config import ROLES, PERSONAS
 
 
 def inject_css():
-    with open("ui/styles.css") as f:
-        st.markdown(f"<style>{f.read()}</style>", unsafe_allow_html=True)
+    from pathlib import Path
+    css_path = Path(__file__).parent / "styles.css"
+    try:
+        with open(css_path, "r", encoding="utf-8") as f:
+            st.markdown(f"<style>{f.read()}</style>", unsafe_allow_html=True)
+    except FileNotFoundError:
+        # Log to terminal so user can see missing stylesheet issue
+        print(f"Warning: styles.css not found at {css_path}. Skipping CSS injection.")
+    except Exception as e:
+        print(f"Warning: failed to load styles.css: {e}")
 
 
 def sidebar_controls():
@@ -17,7 +25,7 @@ def sidebar_controls():
     persona = st.sidebar.selectbox("Interviewer Persona", list(PERSONAS.keys()))
 
     st.sidebar.write("---")
-    use_voice = st.sidebar.checkbox("Enable voice answer via audio upload", value=True)
+    use_voice = st.sidebar.checkbox("Enable voice answer ", value=True)
 
     if st.sidebar.button("Start / Restart Interview"):
         from core.state import reset_interview
