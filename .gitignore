@@ -30,5 +30,3 @@ logs/
 # Node/npm (if used in future)
 node_modules/
 
-#GEMINI_API_KEY
-GEMINI_API_KEY= [ AIzaSyCsLaRVJ7npbwuZym0pc_Bedsh9GRvi-c4 ]
