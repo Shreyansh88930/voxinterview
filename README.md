@@ -1,85 +1,147 @@
-📌 README.md — VoxInterview 🚀
+# 🤖 VoxInterview — AI Interview Practice Assistant
 
-AI-Powered Smart Interview Practice Assistant
+VoxInterview is an **AI-powered interactive interview simulator** built using **Streamlit + Google Gemini**, designed to help candidates practice technical and behavioral interviews through real conversation flow like ChatGPT.
 
-VoxInterview is an interactive AI interviewer built using Streamlit + Gemini Flash API, designed to help users practice job interviews through a conversational chat experience. It dynamically generates follow-up questions based on the user’s answers and evaluates responses with a detailed scoring rubric.
+It asks follow-up questions, evaluates your responses, scores performance, and recommends improvements — just like a real interviewer! 🎤🧠🚀
 
-🎯 Key Features
-Feature	Description
-🔁 Fully Conversational Interview Flow	AI asks questions, evaluates your answer, then asks the next one automatically
-🧠 Adaptive Questioning	Follows-up based on your previous response & selected job role
-🎤 Voice Input	Answer using speech-to-text (Web Speech API in browser)
-🔊 AI Voice for Questions	Browser reads questions aloud using speech synthesis
-📊 Performance Summary	Scoring breakdown, strengths, weaknesses, recommended topics
-⚡ Real-Time Response Scoring	Dynamic scoring powered by Gemini-2.0 Flash
-💾 State Management	Maintains chat history & feedback in session
-🛠️ Tech Stack
-Component	Technology
-Frontend UI	Streamlit
-AI LLM	Google Gemini 2.0 Flash
-Voice Recognition	Browser SpeechRecognition API
-Styling	Custom CSS (Glassmorphism UI)
-State & Evaluation Logic	Python
-📂 Project Structure
-📁 voxinterview/
-├── app.py  # Main Streamlit App
+---
+
+## ✨ Key Features
+
+| Feature | Description |
+|--------|-------------|
+| 🔁 Continuous Interview Flow | Ask → Answer → Get Score → Next Question Automatically |
+| 🧠 Adaptive Questioning | Next question depends on your previous response & role |
+| 🎤 Voice Input | Speak your answers (Web SpeechRecognition API) |
+| 🔊 AI Voice Output | Questions spoken aloud using Speech Synthesis |
+| 📊 AI Evaluation | Scores clarity, technical depth, relevance & structure |
+| 💬 Chat History | Full conversation saved on screen |
+| 📝 Final Interview Report | Strengths, weaknesses, suggested improvement areas |
+
+---
+
+## 🧱 Architecture Overview
+
+### 🔹 High-Level Architecture
+
+User (Text/Voice Input)
+|
+V
+Streamlit UI (Frontend)
+|
+V
+Agents Layer
+────────────────────────
+| interview_agent.py | → Generates next question using Gemini
+| feedback_agent.py | → Scores + evaluates answers
+────────────────────────
+|
+V
+Gemini 2.0 Flash API (LLM)
+|
+V
+Structured JSON Feedback (Score + Analysis)
+|
+V
+UI Display + Performance Summary
+
+
+### 🔹 Component Breakdown
+
+| Layer | Responsibility |
+|-------|----------------|
+| UI Layer | Voice/Text Input, chat rendering, sidebar settings |
+| State Management | Uses Streamlit Session State for Q&A memory |
+| Interview Agent | Role-based question generation & context |
+| Evaluation Agent | AI performance scoring & actionable feedback |
+| Gemini Model | NLP → understanding + scoring |
+| Local Browser APIs | Speech recognition & Text-to-speech |
+
+---
+
+## 🛠️ Tech Stack
+
+| Category | Technology |
+|---------|------------|
+| Frontend UI | Streamlit |
+| AI/LLM Engine | Google Gemini 2.0 Flash |
+| Voice Recognition | Web SpeechRecognition API (Client-side) |
+| Text-to-Speech | SpeechSynthesis (Browser-based) |
+| Backend Logic | Python |
+| Styling | Custom CSS (Glassmorphism) |
+
+---
+
+## 📂 Folder Structure
+
+📦 voxinterview/
+├── app.py # Streamlit UI + Interview flow handling
 ├── core/
-│   ├── state.py
+│ ├── state.py # Shared state (history, answers, scores)
 ├── agents/
-│   ├── interview_agent.py  # Dynamic Q Generation
-│   ├── feedback_agent.py   # AI Scoring & Summary
+│ ├── interview_agent.py # Question generator
+│ ├── feedback_agent.py # Scoring engine & summary
 ├── services/
-│   ├── llm_client.py       # Gemini API communication
-│   ├── text_to_speech.py   # Browser Speech Recognition support
+│ ├── llm_client.py # Gemini API wrapper (dynamic JSON parsing)
+│ ├── text_to_speech.py # Voice recognition support
 ├── ui/
-│   ├── layout.py           # Sidebar + CSS injection
-├── .env                    # API key stored securely
-├── .gitignore              # Ensures key not pushed to GitHub
+│ ├── layout.py # Sidebar + UI styling
+├── .env # Gemini API key (secret - ignored in GitHub)
+├── .gitignore # Prevents API key from leaking 🚫
 └── README.md
 
-🔐 API Key Setup
 
-1️⃣ Create .env file in project root:
+---
 
+## 🔐 API Key Configuration
+
+Create `.env` file in project root:
+
+```env
 GEMINI_API_KEY=your_api_key_here
 
 
-2️⃣ .env is already included in .gitignore
-✔ This ensures your API key is NOT uploaded to GitHub.
+✔ .env already added to .gitignore
+✔ The API key will NOT be committed to GitHub
+➡️ Evaluation team can request the key if needed
 
-The demo repository will mention that “API key can be found locally in .env (ignored in GitHub for security).”
+▶️ Run the Application
 
-▶️ How to Run
-1️⃣ Install Dependencies
+Install dependencies:
+
 pip install -r requirements.txt
 
-2️⃣ Start Application
+
+Launch:
+
 streamlit run app.py
 
 
-✔ App opens at → http://localhost:8501
+App starts at → http://localhost:8501
 
-🧪 Roles Supported
+🎯 Roles Supported
 
-✔ Software Engineer
-✔ Data Analyst
-✔ Sales Roles
-✔ Generic Behavioral Interviews
+Software Engineering (DSA + System Design + Behavioral)
 
-Easily customizable inside agents/interview_agent.py
+Data Analyst (SQL + Case + Behavioral)
 
-📌 Future Enhancements
+Sales (Customer handling + Pitching)
 
-Resume upload for personalized questions
+Generic Behavioral Interviews
 
-Video interview analysis (eye contact & tone)
+Easy to extend for other domains 🧩
 
-Login + Candidate history tracking
+🚀 Future Enhancements
+Planned Add-on	Benefit
+Resume Upload	Personalized interview questions
+Video Answer Input	Evaluate confidence, body language
+PDF Report Download	Easy sharing with mentors/recruiters
+User Login	Track improvement history
+👨‍💻 Developer Info
 
-Export full report as PDF
+Built by Shreyansh Palwalia
+B.Tech — Delhi Technological University (DTU), India 🇮🇳
 
-Author
+📧 Email: shreyanshpalwalia_se22a12_72@dtu.ac.in
 
-Shreyansh Palwalia
-B.Tech — Delhi Technological University
-📧 shreyanshpalwalia_se22a12_72@dtu.ac.in
+🌐 GitHub: Shreyansh88930
